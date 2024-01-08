@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 /* todos = [
    {
@@ -8,13 +9,21 @@
 */
 export function Todos({todos}) {
 
-  return <div className="text-yellow-500">
+  const [completed, setCompleted] = useState(false);
+
+  const handleCompletion = () => {
+    setCompleted(true);
+  }
+
+  return (
+    <div className="text-yellow-500">
       {todos.map(function(todo) {
           return <div>
               <h1>{todo.title}</h1>
               <h2>{todo.description}</h2>
-              <button>{todo.completed == true ? "Completed" : "Mark as Complete"}</button>
+              <button onClick={handleCompletion} className="bg-black mb-4">{completed == true ? "Completed" : "Mark as Complete"}</button>
           </div>
       })}
   </div>
+  )
 }

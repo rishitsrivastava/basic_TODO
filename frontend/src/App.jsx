@@ -18,7 +18,7 @@ function App() {
   }, [todos]);
 
   return (
-    <div className='bg-slate-800  h-screen'>
+    <div className='bg-slate-800 flex justify-center items-center h-screen'>
       <CreateTodo></CreateTodo>
       <Todos todos={todos} ></Todos>
     </div>

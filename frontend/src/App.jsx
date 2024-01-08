@@ -1,30 +1,26 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 import { CreateTodo } from './components/CreateTodo'
 import { Todos } from './components/Todos'
-import './App.css'
 
+// useEffect hook
 function App() {
-
-  const [todos, settodos] = useState([])
+  const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:8000/todos");
-        const json = await response.json();
-        settodos(json.todos);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    
-    fetchData();
-  }, []); 
+    fetch("http://localhost:8000/todos")
+    .then(async function(res) {
+      const json = await res.json();
+      setTodos(json.todos);
+    })
+  }, [todos]);
 
   return (
-    <div className=' h-screen bg-gradient-to-r from-black via-red-900 to-blue-900'>
-      <CreateTodo />
-      <Todos {...todos} />
+    <div className='bg-slate-800  h-screen'>
+      <CreateTodo></CreateTodo>
+      <Todos todos={todos} ></Todos>
     </div>
   )
 }

@@ -27,7 +27,7 @@ export function CreateTodo(props) {
             margin: 10
         }} onClick={() => {
             // axios
-            fetch("http://localhost:3000/todo", {
+            fetch("http://localhost:8000/todo", {
                 method: "POST",
                 body: JSON.stringify({
                     title: title,
@@ -39,7 +39,7 @@ export function CreateTodo(props) {
             })
                 .then(async function(res) {
                     const json = await res.json();
-                    alert("Todo added");
+                    setTimeout("todo Added", 2*1000);
                 })
         }}>Add a todo</button>
     </div>
